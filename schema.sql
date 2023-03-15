@@ -82,12 +82,14 @@ CREATE TABLE serie(
    PRIMARY KEY(serie_id)
 );
 
-INSERT INTO actor
-  (actor_id, name)
+INSERT INTO serie
+  (serie_id, title, description, release_date, duration, rating, genre, poster_url, trailer_url)
 VALUES
-  ('1','Christian Bale'),
-   ('2','Heath Ledger'),
-   ('3','Aaron Eckhart');
+  ('1','Breaking Bad',
+  "A chemistry teacher diagnosed with inoperable lung cancer turns to manufacturing and selling methamphetamine with a former student in order to secure his family's future.",
+  '2008', '0:49:0', '9.5', 'Crime',
+  'https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/3a1654116269619.605e35b102e33.jpg',
+  'https://www.youtube.com/watch?v=CoWsuFdqeYE&ab_channel=%23BAFS-OldSchool');
 
 CREATE TABLE episode(
    episode_id VARCHAR(50),
@@ -99,12 +101,10 @@ CREATE TABLE episode(
    FOREIGN KEY(serie_id) REFERENCES serie(serie_id)
 );
 
-INSERT INTO actor
-  (actor_id, name)
+INSERT INTO episode
+  (episode_id, name, saison, épisode_number, serie_id)
 VALUES
-  ('1','Christian Bale'),
-   ('2','Heath Ledger'),
-   ('3','Aaron Eckhart');
+  ('1','Ozymandias', '5', '14', '1');
 
 CREATE TABLE rate(
    user_id VARCHAR(50),
@@ -115,12 +115,10 @@ CREATE TABLE rate(
    FOREIGN KEY(movie_id) REFERENCES Movie(movie_id)
 );
 
-INSERT INTO actor
-  (actor_id, name)
+INSERT INTO rate
+  (user_id, movie_id, individual_rating)
 VALUES
-  ('1','Christian Bale'),
-   ('2','Heath Ledger'),
-   ('3','Aaron Eckhart');
+  ('1','1','10');
 
 CREATE TABLE watch(
    user_id VARCHAR(50),
@@ -133,12 +131,10 @@ CREATE TABLE watch(
    FOREIGN KEY(episode_id) REFERENCES episode(episode_id)
 );
 
-INSERT INTO actor
-  (actor_id, name)
+INSERT INTO watch
+  (user_id, watch_date, movie_id, episode_id)
 VALUES
-  ('1','Christian Bale'),
-   ('2','Heath Ledger'),
-   ('3','Aaron Eckhart');
+   ('1','2023-03-15','1','1');
 
 CREATE TABLE play1(
    movie_id VARCHAR(50),
@@ -148,12 +144,12 @@ CREATE TABLE play1(
    FOREIGN KEY(actor_id) REFERENCES actor(actor_id)
 );
 
-INSERT INTO actor
-  (actor_id, name)
+INSERT INTO play1
+  (movie_id, actor_id)
 VALUES
-  ('1','Christian Bale'),
-   ('2','Heath Ledger'),
-   ('3','Aaron Eckhart');
+  ('1','1'),
+   ('1','2'),
+   ('1','3');
 
 CREATE TABLE play2(
    actor_id VARCHAR(50),
@@ -162,3 +158,8 @@ CREATE TABLE play2(
    FOREIGN KEY(actor_id) REFERENCES actor(actor_id),
    FOREIGN KEY(episode_id) REFERENCES episode(episode_id)
 );
+
+INSERT INTO play2
+  (actor_id, episode_id)
+VALUES
+  ('1','1');
