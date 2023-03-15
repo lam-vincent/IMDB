@@ -1,3 +1,16 @@
+-- put comments on what you re doing please like so
+
+-- complete list of the tables :
+-- - Users
+-- - Movie
+-- - actor
+-- - serie
+-- - episode
+-- - rate
+-- - watch
+-- - play1
+-- - play2
+
 CREATE TABLE Users(
    user_id VARCHAR(50),
    username VARCHAR(50),
